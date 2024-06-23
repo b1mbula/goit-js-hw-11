@@ -1,30 +1,30 @@
-import{S as u,i as c}from"./assets/vendor-8c59ed88.js";(function(){const t=document.createElement("link").relList;if(t&&t.supports&&t.supports("modulepreload"))return;for(const e of document.querySelectorAll('link[rel="modulepreload"]'))i(e);new MutationObserver(e=>{for(const r of e)if(r.type==="childList")for(const a of r.addedNodes)a.tagName==="LINK"&&a.rel==="modulepreload"&&i(a)}).observe(document,{childList:!0,subtree:!0});function s(e){const r={};return e.integrity&&(r.integrity=e.integrity),e.referrerPolicy&&(r.referrerPolicy=e.referrerPolicy),e.crossOrigin==="use-credentials"?r.credentials="include":e.crossOrigin==="anonymous"?r.credentials="omit":r.credentials="same-origin",r}function i(e){if(e.ep)return;e.ep=!0;const r=s(e);fetch(e.href,r)}})();function m(o){const t="https://pixabay.com",s="/api/",i=new URLSearchParams({key:"44400646-52d28046ae8ecec8adffea605",q:o,image_type:"photo",orientation:"horizontal",safesearch:"true"}),e=`${t}${s}?${i}`;return fetch(e).then(r=>r.json())}function p(o){return o.hits.map(t=>`<li class="gallery-item">
-    <a href=${t.largeImageURL} class="gallery-link">
+import{a as m,S as L,i as d}from"./assets/vendor-b0d10f48.js";(function(){const e=document.createElement("link").relList;if(e&&e.supports&&e.supports("modulepreload"))return;for(const t of document.querySelectorAll('link[rel="modulepreload"]'))i(t);new MutationObserver(t=>{for(const s of t)if(s.type==="childList")for(const n of s.addedNodes)n.tagName==="LINK"&&n.rel==="modulepreload"&&i(n)}).observe(document,{childList:!0,subtree:!0});function o(t){const s={};return t.integrity&&(s.integrity=t.integrity),t.referrerPolicy&&(s.referrerPolicy=t.referrerPolicy),t.crossOrigin==="use-credentials"?s.credentials="include":t.crossOrigin==="anonymous"?s.credentials="omit":s.credentials="same-origin",s}function i(t){if(t.ep)return;t.ep=!0;const s=o(t);fetch(t.href,s)}})();m.defaults.baseURL="https://pixabay.com/api/";m.defaults.params={key:"44400646-52d28046ae8ecec8adffea605",image_type:"photo",orientation:"horizontal",safesearch:"true",per_page:15};async function g(r,e){const i=`/?${new URLSearchParams({q:r,page:e})}`;return(await m.get(i)).data}function f(r){return r.hits.map(e=>`<li class="gallery-item">
+    <a href=${e.largeImageURL} class="gallery-link">
      <img
       class="gallery-image"
-      src= ${t.webformatURL}
-      alt=${t.tags}
+      src= ${e.webformatURL}
+      alt=${e.tags}
      />
     </a>
     <div class="image-container">
       <ul class="text-list">
         <li>
           <h3>Likes</h3>
-          <p class="image-description">${t.likes}</p>
+          <p class="image-description">${e.likes}</p>
         </li>
         <li>
           <h3>Views</h3>
-          <p class="image-description">${t.views}</p>
+          <p class="image-description">${e.views}</p>
         </li>
         <li>
           <h3>Comments</h3>
-          <p class="image-description">${t.comments}</p>
+          <p class="image-description">${e.comments}</p>
         </li>
         <li>
           <h3>Downloads</h3>
-          <p class="image-description">${t.downloads}</p>
+          <p class="image-description">${e.downloads}</p>
         </li>
       </ul>
     </div>
-  </li>`).join("")}const n=document.querySelector(".loader");n.style.display="none";const d=new u(".gallery a",{captions:!0,captionsData:"alt",captionDelay:250,widthRatio:1,height:"500px"}),l=document.querySelector(".form-search"),g=document.querySelector(".gallery");l.addEventListener("submit",o=>{o.preventDefault(),n.style.display="block";const t=l.elements.request.value.trim();t?m(t).then(s=>{n.style.display="none",s.hits.length||c.show({message:"Sorry, there are no images matching your search query. Please try again!",messageColor:"white",backgroundColor:"red",progressBarColor:"white"});const i=p(s);g.innerHTML=i,d.refresh()}).catch(s=>{console.log(s)}):c.show({message:"Please,  enter a picture",messageColor:"white",backgroundColor:"red",progressBarColor:"white"}),l.elements.request.value=""});
+  </li>`).join("")}const u=document.querySelector(".loader");u.style.display="none";const b=new L(".gallery a",{captions:!0,captionsData:"alt",captionDelay:250,widthRatio:1,height:"500px"}),c=document.querySelector(".form-search"),h=document.querySelector(".gallery"),p=document.querySelector(".load-btn");let a=1,l="",y=1;const v=15;c.addEventListener("submit",async r=>{if(r.preventDefault(),a=1,u.style.display="block",l=c.elements.request.value.trim(),!l)d.show({message:"Please,  enter a picture",messageColor:"white",backgroundColor:"red",progressBarColor:"white"});else try{const e=await g(l,a);y=Math.ceil(e.totalHits/v),u.style.display="none",e.hits.length||d.show({message:"Sorry, there are no images matching your search query. Please try again!",messageColor:"white",backgroundColor:"red",progressBarColor:"white"});const o=f(e);h.innerHTML=o,w(),b.refresh()}catch(e){console.log(e)}c.elements.request.value=""});p.addEventListener("click",async()=>{a++;const r=await g(l,a),e=f(r);h.insertAdjacentHTML("beforeend",e),w()});function w(){a>=y?C():P()}function P(){p.classList.remove("hidden")}function C(){p.classList.add("hidden"),d.show({message:"We are sorry, but you have reached the end of search results",messageColor:"white",backgroundColor:"red",progressBarColor:"white"})}
 //# sourceMappingURL=commonHelpers.js.map
