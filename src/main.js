@@ -70,6 +70,7 @@ loadMoreBtn.addEventListener('click', async () => {
   const data = await getPhoto(value, currentPage);
   const markup = imgTemplate(data);
   imagesUl.insertAdjacentHTML('beforeend', markup);
+  refreshPage.refresh();
   scrollElem();
   updateBtnStatus();
 });
@@ -88,12 +89,14 @@ function showBtn() {
 
 function hideBtn() {
   loadMoreBtn.classList.add('hidden');
-  iziToast.show({
-    message: 'We are sorry, but you have reached the end of search results',
-    messageColor: 'white',
-    backgroundColor: 'red',
-    progressBarColor: 'white',
-  });
+  if (maxPage !== 0) {
+    iziToast.show({
+      message: 'We are sorry, but you have reached the end of search results',
+      messageColor: 'white',
+      backgroundColor: 'red',
+      progressBarColor: 'white',
+    });
+  }
 }
 
 function scrollElem() {
